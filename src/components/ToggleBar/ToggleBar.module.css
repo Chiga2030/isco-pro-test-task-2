@@ -1,0 +1,20 @@
+.ToggleBar {
+  box-shadow: #707070 1px 1px 8px;
+  border-radius: .5rem;
+  padding: .5rem;
+  width: 50%;
+  margin: auto;
+}
+
+.buttonBar {
+  display: flex;
+}
+
+.button {
+  margin: 0 1rem;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
