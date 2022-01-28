@@ -1,0 +1,27 @@
+.activeAreaLeft,
+.activeAreaCenter,
+.activeAreaRight {
+  transition: transform .2s ease-in-out;
+  position: absolute;
+  height: 2rem;
+  z-index: 0;
+}
+
+.activeAreaLeft {
+  width: 0.5rem;
+  background: red;
+  border-radius: .5rem 0 0 .5rem;
+}
+
+.activeAreaCenter {
+  width: 5rem;
+  background: var(--color-clickable);
+  /*transform: translateX(.5rem);*/
+}
+
+.activeAreaRight {
+  width: 0.5rem;
+  background: red;
+  border-radius: 0 .5rem .5rem 0;
+  transform: translateX(5.5rem);
+}
