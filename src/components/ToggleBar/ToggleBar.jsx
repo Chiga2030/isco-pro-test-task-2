@@ -12,6 +12,11 @@ const buttons = [
   'Учебная деятельность',
   'Курсовые',
   'Практика',
+  'Еще одна кнопка',
+  'И еще одна кнопка',
+  'И еще одна кнопка 2',
+  'И еще одна кнопка 3',
+  'И еще одна кнопка 4',
 ];
 
 const ToggleBar = () => {
@@ -82,12 +87,12 @@ const ToggleBar = () => {
               textButton={ button }
             />
           )) }
+          <ActiveArea
+            leftPosition={ leftPosition }
+            centerPosition={ centerPosition }
+            rightPosition={ rightPosition }
+          />
         </span>
-        <ActiveArea
-          leftPosition={ leftPosition }
-          centerPosition={ centerPosition }
-          rightPosition={ rightPosition }
-        />
       </div>
       <hr/>
       <div>content</div>
