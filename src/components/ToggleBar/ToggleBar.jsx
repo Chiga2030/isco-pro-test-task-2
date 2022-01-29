@@ -19,6 +19,10 @@ const ToggleBar = () => {
     centerPosition,
     setCenterPosition,
   ] = useState({});
+  const [
+    rightPosition,
+    setRightPosition,
+  ] = useState({});
 
   const buttonsWrapper = useRef(null);
 
@@ -27,14 +31,20 @@ const ToggleBar = () => {
       width: window.getComputedStyle(
         buttonsWrapper.current.firstChild, null).width,
     });
+
+    setRightPosition({
+      transform: `translateX(calc(${window.getComputedStyle(
+        buttonsWrapper.current.firstChild, null).width} + .7rem))`,
+    });
   }, []);
+
 
   const onDetectNewActivePositionHandler = button => {
     const widthButton = Math.ceil(
       window.getComputedStyle(button, null).width.match(/\d+.+\d/));
 
     const currentWidth = Math.ceil(
-      centerPosition.width.match(/\d+.+\d/));
+      centerPosition.width.match(/\d+./));
 
     const newScale = widthButton / currentWidth;
 
@@ -42,6 +52,11 @@ const ToggleBar = () => {
       ...centerPosition,
       transform: `translateX(calc(${
         button.offsetLeft}px + .75rem)) scaleX(${newScale})`,
+    });
+
+    setRightPosition({
+      transform: `translateX(calc(${
+        button.offsetLeft + widthButton}px + .75rem))`,
     });
   };
 
@@ -61,6 +76,7 @@ const ToggleBar = () => {
         </span>
         <ActiveArea
           centerPosition={ centerPosition }
+          rightPosition={ rightPosition }
         />
       </div>
       <hr/>
