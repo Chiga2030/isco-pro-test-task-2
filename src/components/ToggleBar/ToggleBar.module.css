@@ -9,18 +9,27 @@
 .buttonBar {
   display: flex;
   overflow: hidden;
+  position: relative;
+}
+
+.buttonsWrapper {
+  z-index: 1;
 }
 
 .button {
-  margin: 0 1rem;
   padding: 0.8rem;
   border-radius: 1rem;
   border: none;
   background: none;
   cursor: pointer;
-  z-index: 1;
   font-weight: bold;
+  box-sizing: content-box;
 }
+
+.button:not(:last-child) {
+  margin-right: 1rem;
+}
+
 
 .buttonActive {
   color: var(--color-light);

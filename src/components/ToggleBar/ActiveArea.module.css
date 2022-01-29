@@ -2,26 +2,27 @@
 .activeAreaCenter,
 .activeAreaRight {
   transition: transform .2s ease-in-out;
+  transform-origin: left center;
   position: absolute;
-  height: 2rem;
+  height: 100%;
   z-index: 0;
 }
 
 .activeAreaLeft {
-  width: 0.5rem;
+  width: .75rem;
+  left: 0;
   background: red;
-  border-radius: .5rem 0 0 .5rem;
+  border-radius: .7rem 0 0 .7rem;
 }
 
 .activeAreaCenter {
-  width: 5rem;
   background: var(--color-clickable);
-  /*transform: translateX(.5rem);*/
+  transform: translateX(.75rem);
 }
 
 .activeAreaRight {
-  width: 0.5rem;
+  width: .75rem;
   background: red;
-  border-radius: 0 .5rem .5rem 0;
-  transform: translateX(5.5rem);
+  border-radius: 0 .7rem .7rem 0;
+  transform: translateX(.75rem);
 }

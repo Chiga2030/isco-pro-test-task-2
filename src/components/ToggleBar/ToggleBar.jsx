@@ -16,41 +16,51 @@ const buttons = [
 
 const ToggleBar = () => {
   const [
-    firstPosition,
-    setFirstPosition,
+    centerPosition,
+    setCenterPosition,
   ] = useState({});
 
-  const buttonBar = useRef(null);
+  const buttonsWrapper = useRef(null);
 
   useEffect(() => {
-    setFirstPosition({
-      left: buttonBar.current.firstChild.offsetLeft,
-      height: buttonBar.current.firstChild.offsetHeight,
-      width: buttonBar.current.firstChild.offsetWidth,
+    setCenterPosition({
+      width: window.getComputedStyle(
+        buttonsWrapper.current.firstChild, null).width,
     });
   }, []);
 
-  const onDetectNewActivePositionHandler = coord => {
-    console.log(coord);
+  const onDetectNewActivePositionHandler = button => {
+    const widthButton = Math.ceil(
+      window.getComputedStyle(button, null).width.match(/\d+.+\d/));
 
-    const leftSize = coord.left;
-    console.log(leftSize);
+    const currentWidth = Math.ceil(
+      centerPosition.width.match(/\d+.+\d/));
+
+    const newScale = widthButton / currentWidth;
+
+    setCenterPosition({
+      ...centerPosition,
+      transform: `translateX(calc(${
+        button.offsetLeft}px + .75rem)) scaleX(${newScale})`,
+    });
   };
 
 
   return (
     <div className={ styles.ToggleBar }>
-      <div ref={ buttonBar } className={ styles.buttonBar }>
-        { buttons.map(button => (
-          <Button
-            key={ button }
-            onDetectNewActivePositionHandler={
-              onDetectNewActivePositionHandler }
-            textButton={ button }
-          />
-        )) }
+      <div className={ styles.buttonBar }>
+        <span ref={ buttonsWrapper } className={styles.buttonsWrapper}>
+          { buttons.map(button => (
+            <Button
+              key={ button }
+              onDetectNewActivePositionHandler={
+                onDetectNewActivePositionHandler }
+              textButton={ button }
+            />
+          )) }
+        </span>
         <ActiveArea
-          firstPosition={ firstPosition }
+          centerPosition={ centerPosition }
         />
       </div>
       <hr/>
@@ -73,12 +83,7 @@ const Button = ({
       type="button"
       className={ styles.button }
       value={ textButton }
-      onClick={ () => onDetectNewActivePositionHandler({
-        width: button.current.offsetWidth,
-        height: button.current.offsetHeight,
-        top: button.current.offsetTop,
-        left: button.current.offsetLeft,
-      }) }
+      onClick={ () => onDetectNewActivePositionHandler(button.current) }
     />
   );
 };
