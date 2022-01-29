@@ -16,6 +16,10 @@ const buttons = [
 
 const ToggleBar = () => {
   const [
+    leftPosition,
+    setLeftPosition,
+  ] = useState({});
+  const [
     centerPosition,
     setCenterPosition,
   ] = useState({});
@@ -48,6 +52,11 @@ const ToggleBar = () => {
 
     const newScale = widthButton / currentWidth;
 
+    setLeftPosition({
+      transform: `translateX(calc(${
+        button.offsetLeft}px + .1rem))`,
+    });
+
     setCenterPosition({
       ...centerPosition,
       transform: `translateX(calc(${
@@ -75,6 +84,7 @@ const ToggleBar = () => {
           )) }
         </span>
         <ActiveArea
+          leftPosition={ leftPosition }
           centerPosition={ centerPosition }
           rightPosition={ rightPosition }
         />
@@ -90,7 +100,6 @@ const Button = ({
   onDetectNewActivePositionHandler,
   textButton,
 }) => {
-  console.log();
   const button = useRef(null);
 
   return (

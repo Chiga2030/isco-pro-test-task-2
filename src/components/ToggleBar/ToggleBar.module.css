@@ -7,16 +7,16 @@
 }
 
 .buttonBar {
-  display: flex;
-  overflow: hidden;
   position: relative;
 }
 
 .buttonsWrapper {
-  z-index: 1;
+  display: flex;
+  overflow: hidden;
 }
 
 .button {
+  z-index: 1;
   padding: 0.8rem;
   border-radius: 1rem;
   border: none;
