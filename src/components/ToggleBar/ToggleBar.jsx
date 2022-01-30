@@ -80,19 +80,35 @@ const ToggleBar = ({
               + buttonsWrapper.current.scrollLeft);
           } }
           onPointerMove={ event => {
-            if (pointerStartPosition) {
+            if (pointerStartPosition
+              && event.pointerType !== 'touch') {
               setIsChageActive(false);
               buttonsWrapper.current.scrollTo(
                 pointerStartPosition - event.pageX, null);
             }
           } }
-          onPointerUp={ () => {
+          onTouchMove={event => {
+            if (pointerStartPosition) {
+              setIsChageActive(false);
+              buttonsWrapper.current.scrollTo(
+                pointerStartPosition - event.touches[0].clientX, null);
+            }
+          } }
+          onTouchEnd={ () => {
             setPointerStartPosition(null);
             setTimeout(() => setIsChageActive(true), 200);
           } }
-          onPointerOut={ () => {
-            setPointerStartPosition(null);
-            setIsChageActive(true);
+          onPointerUp={ event => {
+            if (event.pointerType !== 'touch') {
+              setPointerStartPosition(null);
+              setTimeout(() => setIsChageActive(true), 200);
+            }
+          } }
+          onPointerLeave={ event => {
+            if (event.pointerType !== 'touch') {
+              setPointerStartPosition(null);
+              setIsChageActive(true);
+            }
           } }
           onWheel={ event => {
             buttonsWrapper.current.scrollBy(event.deltaY, null);
