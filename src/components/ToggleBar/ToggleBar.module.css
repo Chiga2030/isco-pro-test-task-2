@@ -15,22 +15,3 @@
   overflow: hidden;
   position: relative;
 }
-
-.button {
-  z-index: 1;
-  padding: .8rem;
-  border-radius: 1rem;
-  border: none;
-  background: none;
-  cursor: pointer;
-  font-weight: bold;
-  box-sizing: content-box;
-}
-
-.button:not(:last-child) {
-  margin-right: 1rem;
-}
-
-.buttonActive {
-  color: var(--color-light);
-}

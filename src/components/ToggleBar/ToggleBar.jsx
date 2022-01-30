@@ -11,6 +11,7 @@ import {
 } from './utils';
 
 import ActiveArea from './ActiveArea';
+import Button from './Button';
 
 const buttons = [
   'Учебная деятельность',
@@ -74,24 +75,6 @@ const ToggleBar = () => {
       <hr/>
       <div>content</div>
     </div>
-  );
-};
-
-
-const Button = ({
-  onClickButtonHandler,
-  textButton,
-}) => {
-  const button = useRef(null);
-
-  return (
-    <input
-      ref={ button }
-      type="button"
-      className={ styles.button }
-      value={ textButton }
-      onClick={ () => onClickButtonHandler(button.current) }
-    />
   );
 };
 
