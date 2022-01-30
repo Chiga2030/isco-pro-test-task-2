@@ -17,10 +17,11 @@
   width: .9rem;
   left: 0;
   border-radius: .7rem 0 0 .7rem;
+  transform: translateX(1rem);
 }
 
 .activeAreaCenter {
-  transform: translateX(.75rem);
+  transform: translateX(1.75rem);
 }
 
 .activeAreaRight {

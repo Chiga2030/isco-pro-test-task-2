@@ -39,6 +39,7 @@ const ToggleBar = () => {
     setIsChageActive,
   ] = useState(true);
 
+  const buttonsBar = useRef(null);
   const buttonsWrapper = useRef(null);
 
   const onClickButtonHandler = onDetectAndSetNewActivePositionHandler.bind(
@@ -56,7 +57,7 @@ const ToggleBar = () => {
       },
       rightPosition: {
         transform: `translateX(calc(${window.getComputedStyle(
-          buttonsWrapper.current.firstChild, null).width} + .7rem))`,
+          buttonsWrapper.current.firstChild, null).width} + 1.7rem))`,
       },
     });
 
@@ -66,7 +67,7 @@ const ToggleBar = () => {
 
   return (
     <div className={ styles.ToggleBar }>
-      <div className={ styles.buttonsBar }>
+      <div ref={ buttonsBar } className={ styles.buttonsBar }>
         <span
           ref={ buttonsWrapper }
           className={styles.buttonsWrapper}

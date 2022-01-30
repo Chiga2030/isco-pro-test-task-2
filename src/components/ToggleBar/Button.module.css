@@ -7,10 +7,11 @@
   cursor: pointer;
   font-weight: bold;
   box-sizing: content-box;
+  margin-right: 1rem;
 }
 
-.button:not(:last-child) {
-  margin-right: 1rem;
+.button:first-child {
+  margin-left: 1rem;
 }
 
 .buttonActive {
