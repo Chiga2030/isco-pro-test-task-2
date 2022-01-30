@@ -73,10 +73,10 @@ const ToggleBar = () => {
           onPointerDown={ event => {
             setPointerStartPosition(event.pageX
               + buttonsWrapper.current.scrollLeft);
-            setTimeout(() => setIsChageActive(false), 200);
           } }
           onPointerMove={ event => {
             if (pointerStartPosition) {
+              setIsChageActive(false);
               buttonsWrapper.current.scrollTo(
                 pointerStartPosition - event.pageX, null);
             }
@@ -84,6 +84,10 @@ const ToggleBar = () => {
           onPointerUp={ () => {
             setPointerStartPosition(null);
             setTimeout(() => setIsChageActive(true), 200);
+          } }
+          onPointerOut={ () => {
+            setPointerStartPosition(null);
+            setIsChageActive(true);
           } }
         >
           { buttons.map(button => (
