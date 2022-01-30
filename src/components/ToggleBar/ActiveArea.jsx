@@ -1,22 +1,14 @@
 import styles from './ActiveArea.module.css';
 
 import {
-  useState,
   useEffect,
   useRef,
 } from 'react';
 
 
 const ActiveArea = ({
-  leftPosition,
-  centerPosition,
-  rightPosition,
+  position,
 }) => {
-  const [
-    newPosition,
-    setNewPosition,
-  ] = useState({});
-
   const leftEl = useRef(null);
   const centerEl = useRef(null);
   const rightEl = useRef(null);
@@ -26,18 +18,8 @@ const ActiveArea = ({
       leftEl.current.classList.add(styles.activeAreaTransition);
       centerEl.current.classList.add(styles.activeAreaTransition);
       rightEl.current.classList.add(styles.activeAreaTransition);
-    }, 200);
+    }, 0);
   }, []);
-
-  useEffect(() => {
-    setNewPosition({
-      leftEl: leftPosition,
-      centerEl: centerPosition,
-      rightEl: rightPosition,
-    });
-  }, [
-    centerPosition,
-  ]);
 
 
   return (
@@ -45,19 +27,19 @@ const ActiveArea = ({
       <span
         ref={ leftEl }
         style={ {
-          ...newPosition.leftEl,
+          ...position.leftPosition,
         } }
         className={ styles.activeAreaLeft }></span>
       <span
         ref={ centerEl }
         style={ {
-          ...newPosition.centerEl,
+          ...position.centerPosition,
         } }
         className={ styles.activeAreaCenter }></span>
       <span
         ref={ rightEl }
         style={ {
-          ...newPosition.rightEl,
+          ...position.rightPosition,
         } }
         className={ styles.activeAreaRight }></span>
     </>

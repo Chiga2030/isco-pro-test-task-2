@@ -21,56 +21,49 @@ const buttons = [
 
 const ToggleBar = () => {
   const [
-    leftPosition,
-    setLeftPosition,
-  ] = useState({});
-  const [
-    centerPosition,
-    setCenterPosition,
-  ] = useState({});
-  const [
-    rightPosition,
-    setRightPosition,
+    position,
+    setPosition,
   ] = useState({});
 
   const buttonsWrapper = useRef(null);
 
   useEffect(() => {
-    setCenterPosition({
-      width: window.getComputedStyle(
-        buttonsWrapper.current.firstChild, null).width,
-    });
-
-    setRightPosition({
-      transform: `translateX(calc(${window.getComputedStyle(
-        buttonsWrapper.current.firstChild, null).width} + .7rem))`,
+    setPosition({
+      centerPosition: {
+        width: window.getComputedStyle(
+          buttonsWrapper.current.firstChild, null).width,
+      },
+      rightPosition: {
+        transform: `translateX(calc(${window.getComputedStyle(
+          buttonsWrapper.current.firstChild, null).width} + .7rem))`,
+      },
     });
   }, []);
 
 
-  const onDetectNewActivePositionHandler = button => {
+  const onDetectAndSetNewActivePositionHandler = button => {
     const widthButton = Math.ceil(
       window.getComputedStyle(button, null).width.match(/\d+.+\d/));
 
     const currentWidth = Math.ceil(
-      centerPosition.width.match(/\d+./));
+      position.centerPosition.width.match(/\d+./));
 
     const newScale = Math.round((widthButton / currentWidth) * 100) / 100 ;
 
-    setLeftPosition({
-      transform: `translateX(${
-        button.offsetLeft}px)`,
-    });
-
-    setCenterPosition({
-      ...centerPosition,
-      transform: `translateX(calc(${
-        button.offsetLeft}px + .75rem)) scaleX(${newScale})`,
-    });
-
-    setRightPosition({
-      transform: `translateX(calc(${
-        button.offsetLeft + widthButton}px + .7rem))`,
+    setPosition({
+      leftPosition: {
+        transform: `translateX(${
+          button.offsetLeft}px)`,
+      },
+      centerPosition: {
+        ...position.centerPosition,
+        transform: `translateX(calc(${
+          button.offsetLeft}px + .75rem)) scaleX(${newScale})`,
+      },
+      rightPosition: {
+        transform: `translateX(calc(${
+          button.offsetLeft + widthButton}px + .7rem))`,
+      },
     });
   };
 
@@ -82,15 +75,13 @@ const ToggleBar = () => {
           { buttons.map(button => (
             <Button
               key={ button }
-              onDetectNewActivePositionHandler={
-                onDetectNewActivePositionHandler }
+              onDetectAndSetNewActivePositionHandler={
+                onDetectAndSetNewActivePositionHandler }
               textButton={ button }
             />
           )) }
           <ActiveArea
-            leftPosition={ leftPosition }
-            centerPosition={ centerPosition }
-            rightPosition={ rightPosition }
+            position={ position }
           />
         </span>
       </div>
@@ -102,7 +93,7 @@ const ToggleBar = () => {
 
 
 const Button = ({
-  onDetectNewActivePositionHandler,
+  onDetectAndSetNewActivePositionHandler,
   textButton,
 }) => {
   const button = useRef(null);
@@ -113,7 +104,7 @@ const Button = ({
       type="button"
       className={ styles.button }
       value={ textButton }
-      onClick={ () => onDetectNewActivePositionHandler(button.current) }
+      onClick={ () => onDetectAndSetNewActivePositionHandler(button.current) }
     />
   );
 };
