@@ -39,19 +39,11 @@ const ActiveArea = ({
 
   useEffect(() => {
     setNewLeftPosition(leftPosition);
-  }, [
-    leftPosition,
-  ]);
-
-  useEffect(() => {
     setNewCenterPosition(centerPosition);
-  }, [
-    centerPosition,
-  ]);
-
-  useEffect(() => {
     setNewRightPosition(rightPosition);
   }, [
+    leftPosition,
+    centerPosition,
     rightPosition,
   ]);
 

@@ -26,5 +26,4 @@
 .activeAreaRight {
   width: .75rem;
   border-radius: 0 .7rem .7rem 0;
-  transform: translateX(.75rem);
 }
