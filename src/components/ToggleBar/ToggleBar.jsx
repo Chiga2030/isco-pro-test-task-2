@@ -30,6 +30,11 @@ const ToggleBar = () => {
     setPosition,
   ] = useState({});
 
+  const [
+    pointerStartPosition,
+    setPointerStartPosition,
+  ] = useState(null);
+
   const buttonsWrapper = useRef(null);
 
   const onClickButtonHandler = onDetectAndSetNewActivePositionHandler.bind(
@@ -57,8 +62,20 @@ const ToggleBar = () => {
 
   return (
     <div className={ styles.ToggleBar }>
-      <div className={ styles.buttonBar }>
-        <span ref={ buttonsWrapper } className={styles.buttonsWrapper}>
+      <div className={ styles.buttonsBar }>
+        <span
+          ref={ buttonsWrapper }
+          className={styles.buttonsWrapper}
+          onPointerDown={ event => setPointerStartPosition(event.pageX
+            + buttonsWrapper.current.scrollLeft) }
+          onPointerMove={ event => {
+            if (pointerStartPosition) {
+              buttonsWrapper.current.scrollTo(
+                pointerStartPosition - event.pageX, null);
+            }
+          } }
+          onPointerUp={ () => setPointerStartPosition(null) }
+        >
           { buttons.map(button => (
             <Button
               key={ button }
