@@ -13,7 +13,7 @@ import {
 import ActiveArea from './ActiveArea';
 import Button from './Button';
 
-const buttons = [
+const initialButtonsState = [
   'Учебная деятельность',
   'Курсовые',
   'Практика',
@@ -24,7 +24,9 @@ const buttons = [
   'И еще одна кнопка 4',
 ];
 
-const ToggleBar = () => {
+const ToggleBar = ({
+  buttons = initialButtonsState,
+}) => {
   const [
     position,
     setPosition,
