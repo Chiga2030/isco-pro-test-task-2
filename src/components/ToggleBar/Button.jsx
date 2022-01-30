@@ -7,6 +7,7 @@ import {
 const Button = ({
   onClickButtonHandler,
   textButton,
+  isChangeActive,
 }) => {
   const button = useRef(null);
 
@@ -16,7 +17,11 @@ const Button = ({
       type="button"
       className={ styles.button }
       value={ textButton }
-      onClick={ () => onClickButtonHandler(button.current) }
+      onClick={ () => {
+        if (isChangeActive) {
+          onClickButtonHandler(button.current);
+        }
+      } }
     />
   );
 };

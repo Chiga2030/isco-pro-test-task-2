@@ -34,6 +34,10 @@ const ToggleBar = () => {
     pointerStartPosition,
     setPointerStartPosition,
   ] = useState(null);
+  const [
+    isChangeActive,
+    setIsChageActive,
+  ] = useState(true);
 
   const buttonsWrapper = useRef(null);
 
@@ -66,15 +70,21 @@ const ToggleBar = () => {
         <span
           ref={ buttonsWrapper }
           className={styles.buttonsWrapper}
-          onPointerDown={ event => setPointerStartPosition(event.pageX
-            + buttonsWrapper.current.scrollLeft) }
+          onPointerDown={ event => {
+            setPointerStartPosition(event.pageX
+              + buttonsWrapper.current.scrollLeft);
+            setTimeout(() => setIsChageActive(false), 200);
+          } }
           onPointerMove={ event => {
             if (pointerStartPosition) {
               buttonsWrapper.current.scrollTo(
                 pointerStartPosition - event.pageX, null);
             }
           } }
-          onPointerUp={ () => setPointerStartPosition(null) }
+          onPointerUp={ () => {
+            setPointerStartPosition(null);
+            setTimeout(() => setIsChageActive(true), 200);
+          } }
         >
           { buttons.map(button => (
             <Button
@@ -82,6 +92,7 @@ const ToggleBar = () => {
               onClickButtonHandler={
                 onClickButtonHandler }
               textButton={ button }
+              isChangeActive={ isChangeActive }
             />
           )) }
           <ActiveArea
