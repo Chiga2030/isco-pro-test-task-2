@@ -1,0 +1,36 @@
+.ToggleBar {
+  box-shadow: #707070 1px 1px 8px;
+  border-radius: .5rem;
+  padding: .5rem;
+  width: 50%;
+  margin: auto;
+}
+
+.buttonsBar {
+  position: relative;
+}
+
+.buttonsBar:before,
+.buttonsBar:after {
+  position: absolute;
+  content: '';
+  width: 1rem;
+  height: 100%;
+  z-index: 2;
+}
+
+.buttonsBar:before {
+  background: linear-gradient(to right, #fff, transparent);
+}
+
+.buttonsBar:after {
+  background: linear-gradient(to left, #fff, transparent);
+  right: 0;
+  top: 0;
+}
+
+.buttonsWrapper {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+}

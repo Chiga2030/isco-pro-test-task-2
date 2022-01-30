@@ -8,4 +8,5 @@
 
 body {
   font-family: 'manrope', sans-serif;
+  color: var(--text-color-main);
 }
