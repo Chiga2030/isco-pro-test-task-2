@@ -38,6 +38,8 @@ const ToggleBar = () => {
           buttonsWrapper.current.firstChild, null).width} + .7rem))`,
       },
     });
+
+    buttonsWrapper.current.firstChild.style.color = 'var(--text-color-light)';
   }, []);
 
 
@@ -65,6 +67,18 @@ const ToggleBar = () => {
           button.offsetLeft + widthButton}px + .7rem))`,
       },
     });
+
+    setButtonsColor(buttonsWrapper.current.children, button);
+  };
+
+  const setButtonsColor = (buttons, activeButton) => {
+    Array.prototype.forEach.call(
+      buttons,
+      element => element.style.color = 'var(--text-color-main)');
+
+    setTimeout(() => {
+      activeButton.style.color = 'var(--text-color-light)';
+    }, 200);
   };
 
 
