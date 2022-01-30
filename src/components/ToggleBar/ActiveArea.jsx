@@ -15,9 +15,13 @@ const ActiveArea = ({
 
   useEffect(() => {
     setTimeout(() => {
-      leftEl.current.classList.add(styles.activeAreaTransition);
-      centerEl.current.classList.add(styles.activeAreaTransition);
-      rightEl.current.classList.add(styles.activeAreaTransition);
+      [
+        leftEl,
+        centerEl,
+        rightEl,
+      ].forEach(
+        element => element.current.classList.add(styles.activeAreaTransition)
+      );
     }, 0);
   }, []);
 
