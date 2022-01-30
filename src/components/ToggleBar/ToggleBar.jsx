@@ -89,6 +89,9 @@ const ToggleBar = () => {
             setPointerStartPosition(null);
             setIsChageActive(true);
           } }
+          onWheel={ event => {
+            buttonsWrapper.current.scrollBy(event.deltaY, null);
+          } }
         >
           { buttons.map(button => (
             <Button
