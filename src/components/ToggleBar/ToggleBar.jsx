@@ -55,11 +55,11 @@ const ToggleBar = () => {
     const currentWidth = Math.ceil(
       centerPosition.width.match(/\d+./));
 
-    const newScale = widthButton / currentWidth;
+    const newScale = Math.round((widthButton / currentWidth) * 100) / 100 ;
 
     setLeftPosition({
-      transform: `translateX(calc(${
-        button.offsetLeft}px + .1rem))`,
+      transform: `translateX(${
+        button.offsetLeft}px)`,
     });
 
     setCenterPosition({
@@ -70,7 +70,7 @@ const ToggleBar = () => {
 
     setRightPosition({
       transform: `translateX(calc(${
-        button.offsetLeft + widthButton}px + .75rem))`,
+        button.offsetLeft + widthButton}px + .7rem))`,
     });
   };
 

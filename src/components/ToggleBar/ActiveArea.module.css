@@ -14,7 +14,7 @@
 }
 
 .activeAreaLeft {
-  width: .75rem;
+  width: .9rem;
   left: 0;
   border-radius: .7rem 0 0 .7rem;
 }
@@ -24,6 +24,6 @@
 }
 
 .activeAreaRight {
-  width: .75rem;
+  width: .9rem;
   border-radius: 0 .7rem .7rem 0;
 }

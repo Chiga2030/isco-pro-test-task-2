@@ -13,16 +13,8 @@ const ActiveArea = ({
   rightPosition,
 }) => {
   const [
-    newLeftPosition,
-    setNewLeftPosition,
-  ] = useState({});
-  const [
-    newCenterPosition,
-    setNewCenterPosition,
-  ] = useState({});
-  const [
-    newRightPosition,
-    setNewRightPosition,
+    newPosition,
+    setNewPosition,
   ] = useState({});
 
   const leftEl = useRef(null);
@@ -38,9 +30,11 @@ const ActiveArea = ({
   }, []);
 
   useEffect(() => {
-    setNewLeftPosition(leftPosition);
-    setNewCenterPosition(centerPosition);
-    setNewRightPosition(rightPosition);
+    setNewPosition({
+      leftEl: leftPosition,
+      centerEl: centerPosition,
+      rightEl: rightPosition,
+    });
   }, [
     centerPosition,
   ]);
@@ -51,19 +45,19 @@ const ActiveArea = ({
       <span
         ref={ leftEl }
         style={ {
-          ...newLeftPosition,
+          ...newPosition.leftEl,
         } }
         className={ styles.activeAreaLeft }></span>
       <span
         ref={ centerEl }
         style={ {
-          ...newCenterPosition,
+          ...newPosition.centerEl,
         } }
         className={ styles.activeAreaCenter }></span>
       <span
         ref={ rightEl }
         style={ {
-          ...newRightPosition,
+          ...newPosition.rightEl,
         } }
         className={ styles.activeAreaRight }></span>
     </>
