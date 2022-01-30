@@ -42,9 +42,7 @@ const ActiveArea = ({
     setNewCenterPosition(centerPosition);
     setNewRightPosition(rightPosition);
   }, [
-    leftPosition,
     centerPosition,
-    rightPosition,
   ]);
 
 
