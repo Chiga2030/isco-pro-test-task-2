@@ -7,7 +7,7 @@ import {
 } from 'react';
 
 import {
-  onDetectAndSetNewActivePositionHandler,
+  detectAndSetNewActiveButton,
 } from './utils';
 
 import ActiveArea from './ActiveArea';
@@ -46,7 +46,7 @@ const ToggleBar = ({
   const buttonsBar = useRef(null);
   const buttonsWrapper = useRef(null);
 
-  const onClickButtonHandler = onDetectAndSetNewActivePositionHandler.bind(
+  const onClickButtonHandler = detectAndSetNewActiveButton.bind(
     null,
     position.centerPosition,
     setPosition,

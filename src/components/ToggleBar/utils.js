@@ -1,36 +1,37 @@
-export const onDetectAndSetNewActivePositionHandler = (
-  centerPosition, setPosition, buttonsWrapper, button) => {
-  const widthButton = Math.ceil(
-    window.getComputedStyle(button, null).width.match(/\d+.+\d/));
+export const detectAndSetNewActiveButton = (
+  centerElement, setPosition, buttonsWrapper, nextButton) => {
+  const widthNextButton = Math.ceil(
+    window.getComputedStyle(nextButton, null).width.match(/\d+.+\d/));
 
-  const currentWidth = Math.ceil(
-    centerPosition.width.match(/\d+./));
+  const centerElementWidth = Math.ceil(
+    centerElement.width.match(/\d+./));
 
-  const newScale = Math.round((widthButton / currentWidth) * 100) / 100 ;
+  const newScale = Math.round(
+    (widthNextButton / centerElementWidth) * 100) * 0.01 ;
 
   setPosition({
     leftPosition: {
       transform: `translateX(${
-        button.offsetLeft}px)`,
+        nextButton.offsetLeft}px)`,
     },
     centerPosition: {
-      ...centerPosition,
+      ...centerElement,
       transform: `translateX(calc(${
-        button.offsetLeft}px + .75rem)) scaleX(${newScale})`,
+        nextButton.offsetLeft}px + .75rem)) scaleX(${newScale})`,
     },
     rightPosition: {
       transform: `translateX(calc(${
-        button.offsetLeft + widthButton}px + .7rem))`,
+        nextButton.offsetLeft + widthNextButton}px + .7rem))`,
     },
   });
 
-  setButtonsColor(buttonsWrapper.children, button);
+  setButtonsColor(buttonsWrapper.children, nextButton);
 };
 
 
-const setButtonsColor = (buttons, activeButton) => {
+const setButtonsColor = (allButtons, activeButton) => {
   Array.prototype.forEach.call(
-    buttons,
+    allButtons,
     element => element.style.color = 'var(--text-color-main)');
 
   setTimeout(() => {
