@@ -4,7 +4,7 @@ const FuncComponent = ({
   background,
 }) => (
   <div style={ {
-    padding: bigPaddig ? '5rem' : false,
+    padding: bigPaddig ? '5rem' : '1rem',
     background: background ? 'var(--color-clickable)' : false,
   } }>
     { content }
