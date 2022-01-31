@@ -13,21 +13,10 @@ import {
 import ActiveArea from './ActiveArea';
 import Button from './Button';
 
-const initialButtonsState = [
-  'Учебная деятельность',
-  'Курсовые',
-  'Практика',
-  'Очень очень длинная кнопка',
-  'Нет',
-  'Еще одна кнопка',
-  'И еще одна кнопка',
-  'И еще одна кнопка 2',
-  'И еще одна кнопка 3',
-  'И еще одна кнопка 4',
-];
 
 const ToggleBar = ({
-  buttons = initialButtonsState,
+  buttons,
+  contents,
 }) => {
   const [
     position,
@@ -42,6 +31,11 @@ const ToggleBar = ({
     isChangeActive,
     setIsChageActive,
   ] = useState(true);
+
+  const [
+    contentId,
+    setContentId,
+  ] = useState(0);
 
   const buttonsBar = useRef(null);
   const buttonsWrapper = useRef(null);
@@ -116,11 +110,12 @@ const ToggleBar = ({
         >
           { buttons.map(button => (
             <Button
-              key={ button }
+              key={ button.id }
               onClickButtonHandler={
                 onClickButtonHandler }
-              textButton={ button }
+              textButton={ button.text }
               isChangeActive={ isChangeActive }
+              setContentId={ () => setContentId(button.id) }
             />
           )) }
           <ActiveArea
@@ -129,7 +124,7 @@ const ToggleBar = ({
         </span>
       </div>
       <hr/>
-      <div>content</div>
+      { contents[contentId].content }
     </div>
   );
 };
