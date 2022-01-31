@@ -8,6 +8,7 @@ const Button = ({
   onClickButtonHandler,
   textButton,
   isChangeActive,
+  setContentId,
 }) => {
   const button = useRef(null);
 
@@ -20,6 +21,7 @@ const Button = ({
       onClick={ () => {
         if (isChangeActive) {
           onClickButtonHandler(button.current);
+          setContentId();
         }
       } }
     />

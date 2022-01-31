@@ -13,21 +13,129 @@ import {
 import ActiveArea from './ActiveArea';
 import Button from './Button';
 
-const initialButtonsState = [
-  'Учебная деятельность',
-  'Курсовые',
-  'Практика',
-  'Очень очень длинная кнопка',
-  'Нет',
-  'Еще одна кнопка',
-  'И еще одна кнопка',
-  'И еще одна кнопка 2',
-  'И еще одна кнопка 3',
-  'И еще одна кнопка 4',
+const Content = () => (
+  <>
+    any content
+  </>
+);
+
+const initialState = [
+  {
+    button: {
+      id: 0,
+      text: 'Учебная деятельность',
+    },
+    content: {
+      id: 0,
+      content: <Content/>,
+    },
+  },
+  {
+    button: {
+      id: 1,
+      text: 'Курсовые',
+    },
+    content: {
+      id: 1,
+      content: 'text content',
+    },
+  },
+  {
+    button: {
+      id: 2,
+      text: 'Практика',
+    },
+    content: {
+      id: 2,
+      content: (<Content/>),
+    },
+  },
+  {
+    button: {
+      id: 3,
+      text: 'Очень очень длинная кнопка',
+    },
+    content: {
+      id: 3,
+      content: (<Content/>),
+    },
+  },
+  {
+    button: {
+      id: 4,
+      text: 'Нет',
+    },
+    content: {
+      id: 4,
+      content: (<Content/>),
+    },
+  },
+  {
+    button: {
+      id: 5,
+      text: 'Еще одна кнопка',
+    },
+    content: {
+      id: 5,
+      content: (<Content/>),
+    },
+  },
+  {
+    button: {
+      id: 6,
+      text: 'И еще одна кнопка',
+    },
+    content: {
+      id: 6,
+      content: (<Content/>),
+    },
+  },
+  {
+    button: {
+      id: 7,
+      text: 'И еще одна кнопка 2',
+    },
+    content: {
+      id: 7,
+      content: (<Content/>),
+    },
+  },
+  {
+    button: {
+      id: 8,
+      text: 'И еще одна кнопка 3',
+    },
+    content: {
+      id: 8,
+      content: (<Content/>),
+    },
+  },
+  {
+    button: {
+      id: 9,
+      text: 'И еще одна кнопка 4',
+    },
+    content: {
+      id: 9,
+      content: (<Content/>),
+    },
+  },
+  {
+    button: {
+      id: 10,
+      text: 'И еще одна кнопка 5',
+    },
+    content: {
+      id: 10,
+      content: (<Content/>),
+    },
+  },
 ];
 
+
 const ToggleBar = ({
-  buttons = initialButtonsState,
+  buttons = initialState.map(state => state.button),
+  contents = initialState.map(state => state.content),
 }) => {
   const [
     position,
@@ -42,6 +150,11 @@ const ToggleBar = ({
     isChangeActive,
     setIsChageActive,
   ] = useState(true);
+
+  const [
+    contentId,
+    setContentId,
+  ] = useState(0);
 
   const buttonsBar = useRef(null);
   const buttonsWrapper = useRef(null);
@@ -116,11 +229,12 @@ const ToggleBar = ({
         >
           { buttons.map(button => (
             <Button
-              key={ button }
+              key={ button.id }
               onClickButtonHandler={
                 onClickButtonHandler }
-              textButton={ button }
+              textButton={ button.text }
               isChangeActive={ isChangeActive }
+              setContentId={ () => setContentId(button.id) }
             />
           )) }
           <ActiveArea
@@ -129,7 +243,7 @@ const ToggleBar = ({
         </span>
       </div>
       <hr/>
-      <div>content</div>
+      { contents[contentId].content }
     </div>
   );
 };
